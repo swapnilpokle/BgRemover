@@ -1,0 +1,33 @@
+body{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-around;
+}
+.outer
+{display: flex;
+  flex-direction: column;
+align-items: center;
+  justify-content: space-around;
+  margin-top: 8px;
+background-color: rgb(217, 255, 242);
+width: 400px;
+height: 200px;
+text-align: center;
+border-radius: 10px;
+padding: 10px;
+  box-shadow:-18px 1px 11px rgba(40, 40, 40, 0.177);
+}
+
+#download{
+  padding: 8px 12px;
+  text-align: center;
+  background-color: rgb(24, 20, 255);
+  color: #fff;
+}
+#result{
+
+  margin-top:5rem;
+
+}

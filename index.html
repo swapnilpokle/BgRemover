@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Removal App</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<style>
+    body{
+        margin: 0 auto;
+        width: 100vh;
+    }
+    #result img {
+        max-width: 60%;
+        height: auto;
+        border:1px solid black ;
+    }
+    #download {
+        display: none;
+        margin-top: 10px;
+       
+    }
+</style>
+<body>
+    <div class="outer">
+  
+        <h1>Background Removal App</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required class="before">
+            <button type="submit">Upload</button>
+        </form>
+    
+       
+    
+
+</div>
+<div class="inner">
+    <div id="result"></div>
+    <a id="download" download="processed-image.png">Download Processed Image</a>
+   </div>
+    <script>
+        
+        
+
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<img src="${url}" alt="Processed Image">`;
+
+                const downloadLink = document.getElementById('download');
+                downloadLink.href = url;
+                downloadLink.style.display = 'block';
+            } else {
+                alert('Background removal failed');
+            }
+        };
+    </script>
+</body>
+</html>
